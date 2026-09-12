@@ -113,6 +113,15 @@ a { color: inherit; text-decoration: none; }
 .site-footer a, .site-footer p { color: #9eabb6; font-size: .86rem; line-height: 1.65; }
 .site-footer a:hover { color: white; }
 .site-footer strong { color: white; }
+.site-footer-map { padding-bottom: 48px; }
+.site-footer-map-heading { display: flex; align-items: end; justify-content: space-between; gap: 24px; padding-bottom: 18px; }
+.site-footer-map-heading h3, .site-footer-map-heading p { margin: 0; }
+.site-footer-map iframe { display: block; width: 100%; height: min(450px, 56vw); min-height: 300px; border-radius: 18px 18px 18px 6px; background: #102238; }
+@media (max-width: 700px) {
+  .site-footer-map-heading { display: block; }
+  .site-footer-map-heading p { margin-top: 7px; }
+  .site-footer-map iframe { height: 340px; min-height: 0; border-radius: 14px 14px 14px 5px; }
+}
 .page-intro { margin-bottom: 64px; background: #0b1b2d; color: white; }
 .page-intro .site-shell { position: relative; overflow: hidden; }
 .page-intro .site-shell::after { content: ""; position: absolute; top: -260px; right: -130px; width: 520px; height: 520px; border: 1px solid rgb(183 245 66 / 22%); border-radius: 50%; box-shadow: 0 0 0 80px rgb(255 255 255 / 2%), 0 0 0 160px rgb(255 255 255 / 2%); }

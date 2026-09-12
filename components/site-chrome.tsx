@@ -15,6 +15,8 @@ const nav = [
   ["Kontaktai", "/kontaktai"],
 ];
 
+const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2304.611266653086!2d25.248727313013852!3d54.71646207260449!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dd9b3d5d4d0885%3A0x8f5f7d05f93b0692!2sUAB%20EV%20projektas!5e0!3m2!1sen!2slt!4v1789211559776!5m2!1sen!2slt";
+
 export function SiteHeader() {
   const { count } = useCart();
   return (
@@ -81,6 +83,22 @@ export function SiteFooter() {
         <div><h3>Sprendimai</h3>{nav.slice(0, 3).map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</div>
         <div><h3>Informacija</h3><Link href="/parduotuve">Parduotuvė</Link><Link href="/projektai">Projektai</Link><Link href="/naujienos">Naujienos</Link><Link href="/kontaktai">Kontaktai</Link></div>
         <div><h3>Kontaktai</h3><a href="tel:+37065634766">+370 656 34766</a><a href="mailto:info@electrocars.lt">info@electrocars.lt</a><p>Ukmergės g. 315A-1<br />LT-06306 Vilnius</p></div>
+      </div>
+      <div className="site-footer-map site-shell">
+        <div className="site-footer-map-heading">
+          <h3>Mus rasite čia</h3>
+          <p>UAB „EV Projects“ · Ukmergės g. 315A-1, Vilnius</p>
+        </div>
+        <iframe
+          src={mapEmbedUrl}
+          width="600"
+          height="450"
+          style={{ border: 0 }}
+          allowFullScreen
+          loading="lazy"
+          referrerPolicy="strict-origin-when-cross-origin"
+          title="UAB EV Projects vieta Google žemėlapyje"
+        />
       </div>
       <div className="site-shell flex flex-wrap items-center justify-between gap-4 border-t border-white/10 py-6 text-xs text-slate-500">
         <span>© 2026 UAB „EV Projects“ · Įmonės kodas 303185354</span>
