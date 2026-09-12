@@ -1,5 +1,5 @@
 {
-  "totalItems": 93,
+  "totalItems": 99,
   "products": [
     {
       "id": "2149ad13-4bdb-4573-86bc-6bbf25a7e3b3",
@@ -4863,8 +4863,8 @@
       ],
       "facets": [
         {
-          "id": "dadc790c-ecde-41f3-aa78-998206ba81d8",
-          "name": "Šilumos siurbliai",
+          "id": "69327266-0575-4fa4-9059-44b083c659d9",
+          "name": "Baseinų šildymo sistemos",
           "facet": {
             "id": "411fa06f-17e8-4f7a-9568-48ef98c409ba",
             "name": "Kategorija",
@@ -10894,6 +10894,292 @@
               }
             }
           ]
+        }
+      ]
+    },
+    {
+      "id": "618fcffd-0e1c-4358-9520-0c4cd287cf34",
+      "name": "Buferinė talpa",
+      "slug": "buferine-talpa",
+      "description": "<p>60 litrų buferinė–akumuliacinė talpa šilumos siurblio sistemai. Ji mažina šilumos siurblio įsijungimų skaičių, užtikrina reikiamą cirkuliaciją ir sklandų atitirpinimą.</p><ul><li>Nerūdijančio plieno konstrukcija</li><li>Integruotas 3 kW tenas, valdomas šilumos siurblio</li><li>Galima montuoti ant SPRSUN boilerio</li><li>Talpa: 60 l</li><li>Matmenys: 70 × 55 × 55 cm</li><li>Svoris: 22 kg</li><li>EAN: 6977942930204</li></ul>",
+      "summary": "60 l nerūdijančio plieno buferinė talpa su integruotu 3 kW tenu. Stabilizuoja šilumos siurblio darbą, mažina ciklavimą ir padeda užtikrinti tinkamą cirkuliaciją bei atitirpinimą.",
+      "image": "/assets/products/buferine-talpa-0.webp",
+      "gallery": [
+        "/assets/products/buferine-talpa-0.webp"
+      ],
+      "facets": [
+        {
+          "id": "11bbc20d-1992-431a-a608-513c3f956b2d",
+          "name": "Boileriai",
+          "facet": {
+            "id": "411fa06f-17e8-4f7a-9568-48ef98c409ba",
+            "name": "Kategorija",
+            "code": "category"
+          }
+        },
+        {
+          "id": "062c311b-333d-41f5-977d-1292c2b78568",
+          "name": "60 L",
+          "facet": {
+            "id": "648d861b-e93d-4530-b82e-1f027751c40d",
+            "name": "Talpa",
+            "code": "capacity"
+          }
+        }
+      ],
+      "variants": [
+        {
+          "id": "eaa0edd6-28db-4602-988e-8167b6648a5e",
+          "name": "Buferinė talpa 60 L",
+          "sku": "WTB-60",
+          "price": 32900,
+          "priceWithTax": 32900,
+          "currencyCode": "EUR",
+          "stockLevel": "IN_STOCK",
+          "featuredAsset": {
+            "source": "https://www.sprsunbaltic.lt/wp-content/uploads/2024/03/Water-tank-Sprsun.png",
+            "preview": "https://www.sprsunbaltic.lt/wp-content/uploads/2024/03/Water-tank-Sprsun.png"
+          },
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "893deb81-ab19-493e-b7e1-5b3223296e8a",
+      "name": "Hidraulinis blokas su integruotu boileriu Greenergy R290",
+      "slug": "hidraulinis-blokas-su-integruotu-boileriu",
+      "description": "<p>SPRSUN Greenergy R290 hidraulinis blokas su integruotu 150 l boileriu. Viename korpuse sumontuota buferinė talpa, trieigis vožtuvas, išsiplėtimo indas ir apsaugos automatika.</p><ul><li>Valdiklis: Greenergy Series R290</li><li>Integruotas 3 kW tenas</li><li>Maitinimas: 380–420 V / 50 Hz</li><li>Matmenys be pakuotės: 585 × 630 × 1865 mm</li><li>Svoris: 102 kg</li><li>Gamyklinė garantija: 24 mėn.</li></ul>",
+      "summary": "Pilnai sukomplektuotas SPRSUN Greenergy R290 hidraulinis blokas su 150 l boileriu, buferine talpa, trieigiu vožtuvu, išsiplėtimo indu ir apsaugos automatika.",
+      "image": "/assets/products/hidraulinis-blokas-integruotas-0.webp",
+      "gallery": [
+        "/assets/products/hidraulinis-blokas-integruotas-0.webp",
+        "/assets/products/hidraulinis-blokas-integruotas-1.webp"
+      ],
+      "facets": [
+        {
+          "id": "955b232e-d595-4ce7-9a1e-2af3f6046805",
+          "name": "Hidrauliniai blokai",
+          "facet": {
+            "id": "411fa06f-17e8-4f7a-9568-48ef98c409ba",
+            "name": "Kategorija",
+            "code": "category"
+          }
+        },
+        {
+          "id": "ee7e8b60-0bae-4a36-95ac-5e3a9fb7e80b",
+          "name": "400VAC",
+          "facet": {
+            "id": "3549487f-9ee2-4298-b469-8f522028bcce",
+            "name": "Įtampa",
+            "code": "voltage"
+          }
+        }
+      ],
+      "variants": [
+        {
+          "id": "92601a00-fc1f-4f75-946b-1add40be930f",
+          "name": "Hidraulinis blokas Greenergy R290 su 150 L boileriu",
+          "sku": "CGH-06HR150-B",
+          "price": 299000,
+          "priceWithTax": 299000,
+          "currencyCode": "EUR",
+          "stockLevel": "IN_STOCK",
+          "featuredAsset": {
+            "source": "https://www.sprsunbaltic.lt/wp-content/uploads/2025/01/Sprsun-Hydronic-tank-dimensions.jpg",
+            "preview": "https://www.sprsunbaltic.lt/wp-content/uploads/2025/01/Sprsun-Hydronic-tank-dimensions.jpg"
+          },
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "63c060bb-8d00-402d-a309-09147cf79a5b",
+      "name": "Hidraulinis blokas su integruotu boileriu GreenergyPro R290",
+      "slug": "hidraulinis-blokas-su-integruotu-boileriu-greenergypro-r290",
+      "description": "<p>SPRSUN GreenergyPro R290 hidraulinis blokas su integruotu 150 l boileriu. Boileris, buferinė talpa, trieigis vožtuvas, išsiplėtimo indas ir apsaugos automatika sujungti viename elegantiškame įrenginyje.</p><ul><li>Valdiklis: Carel Greenergy Pro Series R290</li><li>Integruotas 3 kW tenas</li><li>Maitinimas: 380–420 V / 50 Hz</li><li>Pakuotės matmenys: 72 × 67 × 205 cm</li><li>Svoris: 102 kg</li><li>Gamyklinė garantija: 24 mėn.</li></ul>",
+      "summary": "SPRSUN GreenergyPro R290 hidraulinis blokas su 150 l boileriu ir Carel valdikliu. Visa reikalinga hidraulika bei apsaugos automatika integruota viename korpuse.",
+      "image": "/assets/products/hidraulinis-blokas-integruotas-0.webp",
+      "gallery": [
+        "/assets/products/hidraulinis-blokas-integruotas-0.webp",
+        "/assets/products/hidraulinis-blokas-integruotas-1.webp"
+      ],
+      "facets": [
+        {
+          "id": "955b232e-d595-4ce7-9a1e-2af3f6046805",
+          "name": "Hidrauliniai blokai",
+          "facet": {
+            "id": "411fa06f-17e8-4f7a-9568-48ef98c409ba",
+            "name": "Kategorija",
+            "code": "category"
+          }
+        },
+        {
+          "id": "ee7e8b60-0bae-4a36-95ac-5e3a9fb7e80b",
+          "name": "400VAC",
+          "facet": {
+            "id": "3549487f-9ee2-4298-b469-8f522028bcce",
+            "name": "Įtampa",
+            "code": "voltage"
+          }
+        }
+      ],
+      "variants": [
+        {
+          "id": "a4549071-d536-40a0-b65c-6721ea239112",
+          "name": "Hidraulinis blokas GreenergyPro R290 su 150 L boileriu",
+          "sku": "CGH-06HR150",
+          "price": 319000,
+          "priceWithTax": 319000,
+          "currencyCode": "EUR",
+          "stockLevel": "IN_STOCK",
+          "featuredAsset": {
+            "source": "https://www.sprsunbaltic.lt/wp-content/uploads/2025/01/Sprsun-Hydronic-tank-dimensions.jpg",
+            "preview": "https://www.sprsunbaltic.lt/wp-content/uploads/2025/01/Sprsun-Hydronic-tank-dimensions.jpg"
+          },
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "f63df635-659d-4da7-b9d1-1b42f0cb9d87",
+      "name": "Hidraulinis blokas Carel ClimaWise Pro R32 (CGH-06)",
+      "slug": "hidraulinis-blokas-2",
+      "description": "<p>Hidraulinis blokas, skirtas SPRSUN Carel ClimaWise Pro Series R32 šilumos siurbliams CGK-050V3L ir CGK-060V3L.</p><ul><li>Grundfos cirkuliacinis siurblys</li><li>Trieigis vožtuvas ir magnetinis filtras</li><li>Elektros valdymo skydas bei apsaugos</li><li>Išsiplėtimo indas ir vieta valdymo ekranui</li><li>Integruotas 3 kW tenas</li><li>Maitinimas: 380–420 V / 50 Hz</li><li>Matmenys: 67 × 37 × 99,5 cm</li><li>Svoris: 51 kg</li></ul>",
+      "summary": "SPRSUN hidraulinis blokas Carel ClimaWise Pro R32 sistemoms CGK-050V3L ir CGK-060V3L, su Grundfos siurbliu, vožtuvais, filtru, automatika ir 3 kW tenu.",
+      "image": "/assets/products/hidraulinis-blokas-carel-r32-0.webp",
+      "gallery": [
+        "/assets/products/hidraulinis-blokas-carel-r32-0.webp"
+      ],
+      "facets": [
+        {
+          "id": "955b232e-d595-4ce7-9a1e-2af3f6046805",
+          "name": "Hidrauliniai blokai",
+          "facet": {
+            "id": "411fa06f-17e8-4f7a-9568-48ef98c409ba",
+            "name": "Kategorija",
+            "code": "category"
+          }
+        },
+        {
+          "id": "ee7e8b60-0bae-4a36-95ac-5e3a9fb7e80b",
+          "name": "400VAC",
+          "facet": {
+            "id": "3549487f-9ee2-4298-b469-8f522028bcce",
+            "name": "Įtampa",
+            "code": "voltage"
+          }
+        }
+      ],
+      "variants": [
+        {
+          "id": "02aa27d0-660f-4ccf-8f18-5d96bcb2f868",
+          "name": "Hidraulinis blokas Carel ClimaWise Pro R32 CGH-06",
+          "sku": "CGH-06",
+          "price": 165000,
+          "priceWithTax": 165000,
+          "currencyCode": "EUR",
+          "stockLevel": "IN_STOCK",
+          "featuredAsset": {
+            "source": "https://www.sprsunbaltic.lt/wp-content/uploads/2024/01/Heat-pump-Kit-for-R32-Carel-2.png",
+            "preview": "https://www.sprsunbaltic.lt/wp-content/uploads/2024/01/Heat-pump-Kit-for-R32-Carel-2.png"
+          },
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "b9788e6c-4906-43f4-8c4f-6f905369dd3e",
+      "name": "Hidraulinis blokas Carel ClimaWise Pro R32 (CGH-03)",
+      "slug": "hidraulinis-blokas",
+      "description": "<p>Hidraulinis blokas, skirtas SPRSUN Carel ClimaWise Pro Series R32 šilumos siurbliams CGK-025V3L, CGK-030V3L ir CGK-040V3L.</p><ul><li>Grundfos cirkuliacinis siurblys</li><li>Trieigis vožtuvas ir magnetinis filtras</li><li>Elektros valdymo skydas bei apsaugos</li><li>Išsiplėtimo indas ir vieta valdymo ekranui</li><li>Integruotas 3 kW tenas</li><li>Maitinimas: 380–420 V / 50 Hz</li><li>Matmenys: 67 × 37 × 99,5 cm</li><li>Svoris: 51 kg</li></ul>",
+      "summary": "SPRSUN hidraulinis blokas Carel ClimaWise Pro R32 sistemoms CGK-025V3L, CGK-030V3L ir CGK-040V3L, su integruota hidraulika, automatika ir 3 kW tenu.",
+      "image": "/assets/products/hidraulinis-blokas-carel-r32-0.webp",
+      "gallery": [
+        "/assets/products/hidraulinis-blokas-carel-r32-0.webp"
+      ],
+      "facets": [
+        {
+          "id": "955b232e-d595-4ce7-9a1e-2af3f6046805",
+          "name": "Hidrauliniai blokai",
+          "facet": {
+            "id": "411fa06f-17e8-4f7a-9568-48ef98c409ba",
+            "name": "Kategorija",
+            "code": "category"
+          }
+        },
+        {
+          "id": "ee7e8b60-0bae-4a36-95ac-5e3a9fb7e80b",
+          "name": "400VAC",
+          "facet": {
+            "id": "3549487f-9ee2-4298-b469-8f522028bcce",
+            "name": "Įtampa",
+            "code": "voltage"
+          }
+        }
+      ],
+      "variants": [
+        {
+          "id": "e16111ef-0e23-4d60-b663-802bf2808b8a",
+          "name": "Hidraulinis blokas Carel ClimaWise Pro R32 CGH-03",
+          "sku": "CGH-03",
+          "price": 149000,
+          "priceWithTax": 149000,
+          "currencyCode": "EUR",
+          "stockLevel": "IN_STOCK",
+          "featuredAsset": {
+            "source": "https://www.sprsunbaltic.lt/wp-content/uploads/2024/01/Heat-pump-Kit-for-R32-Carel-2.png",
+            "preview": "https://www.sprsunbaltic.lt/wp-content/uploads/2024/01/Heat-pump-Kit-for-R32-Carel-2.png"
+          },
+          "options": []
+        }
+      ]
+    },
+    {
+      "id": "0e051a97-5f48-435b-896d-19251ca3ea51",
+      "name": "Hidraulinis blokas Clima Series R32 (CGH-06-B)",
+      "slug": "hidraulinis-blokas-3",
+      "description": "<p>Hidraulinis blokas, skirtas SPRSUN Clima Series R32 šilumos siurbliams CGK-050V3L-B ir CGK-060V3L-B.</p><ul><li>Cirkuliacinis siurblys, trieigis vožtuvas ir filtrai</li><li>Elektros valdymo skydas bei apsaugos</li><li>Išsiplėtimo indas ir vieta valdymo ekranui</li><li>Prijungimo kabeliai</li><li>Integruotas 3 kW tenas</li><li>Maitinimas: 380–420 V / 50 Hz</li><li>Matmenys: 68 × 37 × 99,5 cm</li><li>Svoris: 51 kg</li></ul>",
+      "summary": "SPRSUN Clima Series R32 hidraulinis blokas modeliams CGK-050V3L-B ir CGK-060V3L-B, su cirkuliaciniu siurbliu, vožtuvais, filtrais, automatika ir kabeliais.",
+      "image": "/assets/products/hidraulinis-blokas-clima-r32-0.webp",
+      "gallery": [
+        "/assets/products/hidraulinis-blokas-clima-r32-0.webp",
+        "/assets/products/hidraulinis-blokas-clima-r32-1.webp",
+        "/assets/products/hidraulinis-blokas-clima-r32-2.webp"
+      ],
+      "facets": [
+        {
+          "id": "955b232e-d595-4ce7-9a1e-2af3f6046805",
+          "name": "Hidrauliniai blokai",
+          "facet": {
+            "id": "411fa06f-17e8-4f7a-9568-48ef98c409ba",
+            "name": "Kategorija",
+            "code": "category"
+          }
+        },
+        {
+          "id": "ee7e8b60-0bae-4a36-95ac-5e3a9fb7e80b",
+          "name": "400VAC",
+          "facet": {
+            "id": "3549487f-9ee2-4298-b469-8f522028bcce",
+            "name": "Įtampa",
+            "code": "voltage"
+          }
+        }
+      ],
+      "variants": [
+        {
+          "id": "7c7df0c5-761f-4526-a4ac-e20807a3e2be",
+          "name": "Hidraulinis blokas Clima Series R32 CGH-06-B",
+          "sku": "CGH-06-B",
+          "price": 139900,
+          "priceWithTax": 139900,
+          "currencyCode": "EUR",
+          "stockLevel": "IN_STOCK",
+          "featuredAsset": {
+            "source": "https://www.sprsunbaltic.lt/wp-content/uploads/2024/01/Heat-Pump-Kit-For-R32-Touch-screen-2-1.png",
+            "preview": "https://www.sprsunbaltic.lt/wp-content/uploads/2024/01/Heat-Pump-Kit-For-R32-Touch-screen-2-1.png"
+          },
+          "options": []
         }
       ]
     }

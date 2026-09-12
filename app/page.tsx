@@ -20,6 +20,7 @@ const directions = [
     text: "Stotelės namams ir verslui, projektavimas, įrengimas bei specializuotas elektromobilių remontas.",
     href: "/elektromobiliai",
     image: "/assets/legacy/electrocars/hero.webp",
+    logo: "/assets/brand/electrocars.png",
     icon: BatteryCharging,
     tone: "ev",
   },
@@ -29,6 +30,7 @@ const directions = [
     text: "Konsultacija, įranga, montavimas, dokumentacija ir priežiūra vienose rankose.",
     href: "/saules-energetika",
     image: "/assets/legacy/saules-tinklas/hero.png",
+    logo: "/assets/brand/saules-tinklas.png",
     icon: SunMedium,
     tone: "solar",
   },
@@ -38,6 +40,7 @@ const directions = [
     text: "Efektyvūs oras–vanduo sprendimai, profesionalus parinkimas, montavimas ir garantinis aptarnavimas.",
     href: "/silumos-siurbliai",
     image: "/assets/legacy/sprsun/hero.webp",
+    logo: "/assets/brand/sprsun-baltic.webp",
     icon: Heater,
     tone: "heat",
   },
@@ -97,11 +100,12 @@ export default function Home() {
             const Icon = direction.icon;
             return (
               <Link key={direction.title} href={direction.href} className={`direction-card ${direction.tone}`}>
-                <img src={direction.image} alt="" />
+                <img className="direction-image" src={direction.image} alt="" />
                 <div className="direction-overlay" />
                 <div className="direction-number"><Icon size={21} /></div>
                 <div className="direction-content">
-                  <span>{direction.eyebrow}</span>
+                  <img className={`direction-logo direction-logo-${direction.tone}`} src={direction.logo} alt={`${direction.title} padalinio logotipas`} />
+                  <span className="direction-eyebrow">{direction.eyebrow}</span>
                   <h3>{direction.title}</h3>
                   <p>{direction.text}</p>
                   <span className="direction-link">Plačiau <ChevronRight /></span>
@@ -123,7 +127,7 @@ export default function Home() {
       <section className="site-shell py-20 lg:py-28">
         <div className="section-heading">
           <div><p className="eyebrow dark"><span /> PARDUOTUVĖ</p><h2>Įranga viename kataloge</h2></div>
-          <Button asChild variant="outline" className="rounded-full"><Link href="/parduotuve">Visos 93 prekės <ArrowRight /></Link></Button>
+          <Button asChild variant="outline" className="rounded-full"><Link href="/parduotuve">Visos {productData.products.length} prekės <ArrowRight /></Link></Button>
         </div>
         <div className="product-grid compact">{productData.products.slice(0, 4).map((product) => <ProductCard key={product.id} product={product} />)}</div>
       </section>

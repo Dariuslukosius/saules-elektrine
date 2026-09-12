@@ -32,6 +32,9 @@ const primaryCategories = [
   "Įkrovimo kabeliai",
   "Įkrovimo adapteriai",
   "Šilumos siurbliai",
+  "Boileriai",
+  "Baseinų šildymo sistemos",
+  "Hidrauliniai blokai",
   "Elektros komponentai",
   "Elektriniai paspirtukai",
 ];
@@ -60,6 +63,8 @@ export function Storefront({ initialCategory }: { initialCategory?: string }) {
   const [category, setCategory] = React.useState(initialCategory || "Visos prekės");
   const [sort, setSort] = React.useState("recommended");
   const [visible, setVisible] = React.useState(12);
+  const productCount = productData.products.length;
+  const variantCount = productData.products.reduce((sum, product) => sum + product.variants.length, 0);
 
   const products = React.useMemo(() => {
     const filtered = productData.products.filter((product) => {
@@ -74,7 +79,7 @@ export function Storefront({ initialCategory }: { initialCategory?: string }) {
     <main>
       <section className="store-hero">
         <div className="site-shell py-16 lg:py-20">
-          <p className="eyebrow"><span /> 93 PRODUKTAI · 206 VARIANTAI</p>
+          <p className="eyebrow"><span /> {productCount} PRODUKTAI · {variantCount} VARIANTAI</p>
           <div className="grid items-end gap-8 lg:grid-cols-[1fr_420px]">
             <div><h1>Profesionali įranga jūsų energijos sistemai.</h1><p>Vienas katalogas elektromobiliams, namams ir verslui.</p></div>
             <label className="store-search"><Search /><Input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Ieškoti prekės arba SKU" aria-label="Ieškoti parduotuvėje" /></label>

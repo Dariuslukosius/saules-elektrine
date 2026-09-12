@@ -16,6 +16,7 @@ const branchContent = {
     title: "Įkrovimo ir serviso sprendimai, kurie tiesiog veikia.",
     intro: "Padedame pasirinkti įrangą, pasirūpiname elektros dalimi, sumontuojame ir liekame šalia, kai prireikia techninės pagalbos.",
     image: "/assets/legacy/electrocars/hero.webp",
+    logo: "/assets/brand/electrocars.png",
     accent: "ev",
     icon: BatteryCharging,
     cta: "Gauti stotelės pasiūlymą",
@@ -38,6 +39,7 @@ const branchContent = {
     title: "Saulės elektrinė, suprojektuota jūsų vartojimui.",
     intro: "Nuo realaus poreikio skaičiavimo iki modulių, inverterio, kaupiklio, dokumentų ir paleidimo. Be perteklinių pažadų ir neaiškių prielaidų.",
     image: "/assets/legacy/saules-tinklas/hero.png",
+    logo: "/assets/brand/saules-tinklas.png",
     accent: "solar",
     icon: SunMedium,
     cta: "Gauti saulės elektrinės pasiūlymą",
@@ -60,6 +62,7 @@ const branchContent = {
     title: "Efektyvus šildymas su oficialiu atstovu šalia.",
     intro: "Parenkame SPRSUN oras–vanduo šilumos siurblius pagal pastato nuostolius, šildymo sistemą ir karšto vandens poreikį. Montuojame ir atliekame garantinį servisą.",
     image: "/assets/legacy/sprsun/hero.webp",
+    logo: "/assets/brand/sprsun-baltic.webp",
     accent: "heat",
     icon: Heater,
     cta: "Parinkti šilumos siurblį",
@@ -80,8 +83,13 @@ const branchContent = {
 } as const;
 
 function relevantProducts(branch: Branch) {
-  const word = branch === "heat" ? "Šilumos siurbliai" : branch === "ev" ? "Įkrovimo" : "Solax";
-  const matches = productData.products.filter((product) => `${product.name} ${product.facets.map(f => f.name).join(" ")}`.includes(word));
+  if (branch === "heat") {
+    return ["Šilumos siurbliai", "Boileriai", "Baseinų šildymo sistemos", "Hidrauliniai blokai"]
+      .map((category) => productData.products.find((product) => product.facets.some((facet) => facet.facet.name === "Kategorija" && facet.name === category)))
+      .filter((product): product is (typeof productData.products)[number] => Boolean(product));
+  }
+  const words = branch === "ev" ? ["Įkrovimo"] : ["Solax"];
+  const matches = productData.products.filter((product) => words.some((word) => `${product.name} ${product.facets.map(f => f.name).join(" ")}`.includes(word)));
   return (matches.length ? matches : productData.products).slice(0, 4);
 }
 
@@ -94,7 +102,7 @@ export function BranchPage({ branch }: { branch: Branch }) {
         <img src={content.image} alt="" />
         <div className="branch-veil" />
         <div className="site-shell relative z-10 grid min-h-[590px] items-end gap-10 py-16 lg:grid-cols-[1.15fr_.55fr]">
-          <div><p className="eyebrow"><span /> {content.label}</p><h1>{content.title}</h1><p>{content.intro}</p><Button asChild size="lg" className="mt-8 rounded-full bg-white px-7 text-slate-950 hover:bg-lime-300"><a href="#uzklausa">{content.cta} <ArrowRight /></a></Button></div>
+          <div><img className={`branch-logo branch-logo-${content.accent}`} src={content.logo} alt={`${content.label} logotipas`} /><p className="eyebrow"><span /> {content.label}</p><h1>{content.title}</h1><p>{content.intro}</p><Button asChild size="lg" className="mt-8 rounded-full bg-white px-7 text-slate-950 hover:bg-lime-300"><a href="#uzklausa">{content.cta} <ArrowRight /></a></Button></div>
           <div className="branch-facts">{content.facts.map(([value, label]) => <div key={label}><strong>{value}</strong><span>{label}</span></div>)}</div>
         </div>
       </section>
@@ -165,7 +173,15 @@ function PageIntro({ label, title, text }: { label: string; title: string; text:
   return <section className="page-intro"><div className="site-shell py-16 lg:py-24"><p className="eyebrow"><span /> {label}</p><h1>{title}</h1><p>{text}</p></div></section>;
 }
 
-export function SiteRouter({ segments }: { segments: string[] }) {
+const storeCategoryBySlug: Record<string, string> = {
+  "stoteles": "Įkrovimo stotelės",
+  "silumos-siurbliai": "Šilumos siurbliai",
+  "boileriai": "Boileriai",
+  "baseinu-sildymo-sistemos": "Baseinų šildymo sistemos",
+  "hidrauliniai-blokai": "Hidrauliniai blokai",
+};
+
+export function SiteRouter({ segments, storeCategory }: { segments: string[]; storeCategory?: string }) {
   const [first, second, third] = segments;
   if (first === "elektromobiliai") {
     if (second === "servisas" && third) return <ArticlePage slug={third} />;
@@ -189,7 +205,7 @@ export function SiteRouter({ segments }: { segments: string[] }) {
     if (second === "krepselis") return <CartPage />;
     if (second === "atsiskaitymas") return <CartPage checkout />;
     if (second === "paskyra") return <AccountPage />;
-    return <Storefront />;
+    return <Storefront initialCategory={storeCategoryBySlug[storeCategory || ""] || storeCategory} />;
   }
   if (first === "projektai") return <ProjectsPage />;
   if (first === "naujienos" && second) return <ArticlePage slug={second} />;

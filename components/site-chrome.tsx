@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Search, ShoppingBag, UserRound, X, Zap } from "lucide-react";
+import { Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useCart } from "@/components/cart-context";
@@ -33,9 +33,8 @@ export function SiteHeader() {
       </div>
       <header className="main-header">
         <div className="site-shell flex h-[76px] items-center justify-between gap-6">
-          <Link href="/" className="brand" aria-label="EV Projects pradinis puslapis">
-            <span className="brand-mark"><Zap size={20} strokeWidth={2.6} /></span>
-            <span>EV <strong>PROJECTS</strong></span>
+          <Link href="/" className="brand" aria-label="Electrocars pradinis puslapis">
+            <img className="brand-logo" src="/assets/brand/electrocars.png" alt="Electrocars" />
           </Link>
           <nav className="hidden items-center gap-6 xl:flex" aria-label="Pagrindinis meniu">
             {nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
@@ -52,7 +51,7 @@ export function SiteHeader() {
               </SheetTrigger>
               <SheetContent className="w-[min(92vw,420px)] border-l-0 bg-[#0b1b2d] text-white">
                 <SheetHeader className="border-b border-white/10 px-6 py-7">
-                  <SheetTitle className="flex items-center gap-3 text-white"><span className="brand-mark"><Zap size={18} /></span> EV PROJECTS</SheetTitle>
+                  <SheetTitle className="flex items-center gap-3 text-white"><img className="brand-logo brand-logo-mobile" src="/assets/brand/electrocars.png" alt="Electrocars" /></SheetTitle>
                   <SheetDescription className="text-slate-400">Visi energijos sprendimai vienoje vietoje.</SheetDescription>
                 </SheetHeader>
                 <nav className="flex flex-col px-6 py-4 text-xl font-bold" aria-label="Mobilusis meniu">
@@ -77,7 +76,7 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="site-shell grid gap-12 py-16 lg:grid-cols-[1.1fr_.7fr_.7fr_1fr]">
         <div>
-          <Link href="/" className="brand text-white"><span className="brand-mark"><Zap size={20} /></span><span>EV <strong>PROJECTS</strong></span></Link>
+          <Link href="/" className="brand text-white"><img className="footer-brand-logo" src="/assets/brand/electrocars.png" alt="Electrocars" /></Link>
           <p className="mt-6 max-w-sm text-sm leading-7 text-slate-400">Elektromobilių įkrovimo, saulės energetikos ir šildymo sprendimai – nuo įrangos iki profesionalaus serviso.</p>
         </div>
         <div><h3>Sprendimai</h3>{nav.slice(0, 3).map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</div>
