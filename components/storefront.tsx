@@ -13,7 +13,8 @@ import productData from "@/data/products.json";
 type Product = (typeof productData.products)[number];
 
 function price(product: Product) {
-  return Math.min(...product.variants.map((variant) => variant.priceWithTax)) / 100;
+  const prices = product.variants.map((variant) => variant.priceWithTax);
+  return prices.length ? Math.min(...prices) / 100 : null;
 }
 
 function eur(value: number) {
@@ -37,17 +38,18 @@ const primaryCategories = [
 
 export function ProductCard({ product }: { product: Product }) {
   const variant = product.variants[0];
+  const productPrice = price(product);
   const { addItem } = useCart();
   return (
     <article className="product-card">
       <Link href={`/parduotuve/produktas/${product.slug}`} className="product-image">
         {product.image ? <img src={product.image} alt={product.name} loading="lazy" /> : <span><ShoppingBag /></span>}
-        <small>{variant.stockLevel === "IN_STOCK" ? "Turime" : "Pagal užsakymą"}</small>
+        <small>{!variant ? "Teirautis" : variant.stockLevel === "IN_STOCK" ? "Turime" : "Pagal užsakymą"}</small>
       </Link>
       <div className="product-body">
         <p>{productCategories(product)[0] || "EV Projects"}</p>
         <h3><Link href={`/parduotuve/produktas/${product.slug}`}>{product.name}</Link></h3>
-        <div className="product-bottom"><strong>{product.variants.length > 1 && <small>nuo </small>}{eur(price(product))}</strong><Button size="icon" aria-label={`Įdėti ${product.name} į krepšelį`} onClick={() => addItem({ id: variant.id, productId: product.id, slug: product.slug, name: product.name, sku: variant.sku, price: variant.priceWithTax / 100, image: product.image })}><Plus /></Button></div>
+        <div className="product-bottom"><strong>{productPrice === null ? "Kaina teiraujantis" : <>{product.variants.length > 1 && <small>nuo </small>}{eur(productPrice)}</>}</strong><Button size="icon" disabled={!variant} aria-label={variant ? `Įdėti ${product.name} į krepšelį` : `${product.name} – teirautis`} onClick={() => variant && addItem({ id: variant.id, productId: product.id, slug: product.slug, name: product.name, sku: variant.sku, price: variant.priceWithTax / 100, image: product.image })}><Plus /></Button></div>
       </div>
     </article>
   );
@@ -65,7 +67,7 @@ export function Storefront({ initialCategory }: { initialCategory?: string }) {
       const matchesCategory = category === "Visos prekės" || productCategories(product).includes(category);
       return matchesQuery && matchesCategory;
     });
-    return filtered.sort((a, b) => sort === "price-asc" ? price(a) - price(b) : sort === "price-desc" ? price(b) - price(a) : a.name.localeCompare(b.name, "lt"));
+    return filtered.sort((a, b) => sort === "price-asc" ? (price(a) ?? Number.POSITIVE_INFINITY) - (price(b) ?? Number.POSITIVE_INFINITY) : sort === "price-desc" ? (price(b) ?? Number.NEGATIVE_INFINITY) - (price(a) ?? Number.NEGATIVE_INFINITY) : a.name.localeCompare(b.name, "lt"));
   }, [query, category, sort]);
 
   return (
@@ -99,7 +101,7 @@ export function ProductDetail({ slug }: { slug: string }) {
   const [activeImage, setActiveImage] = React.useState(product?.image || null);
   const { addItem } = useCart();
   if (!product) return <NotFoundProduct />;
-  const variant = product.variants.find((item) => item.id === selectedVariant) || product.variants[0];
+  const variant = product.variants.find((item) => item.id === selectedVariant) || product.variants[0] || null;
   const specs = product.facets.filter((item) => item.facet.name !== "Kategorija");
   return (
     <main className="product-detail">
@@ -113,18 +115,18 @@ export function ProductDetail({ slug }: { slug: string }) {
           <div className="buy-panel">
             <p className="eyebrow dark"><span /> {productCategories(product)[0] || "EV PROJECTS"}</p>
             <h1>{product.name}</h1>
-            <p className="sku">SKU: {variant.sku}</p>
+            <p className="sku">SKU: {variant?.sku || "bus patikslintas pasiūlyme"}</p>
             <p className="detail-summary">{product.summary}</p>
             {product.variants.length > 1 && <label className="variant-select"><span>Pasirinkite variantą</span><NativeSelect value={selectedVariant} onChange={(event) => setSelectedVariant(event.target.value)}>{product.variants.map((item) => <NativeSelectOption key={item.id} value={item.id}>{item.name}</NativeSelectOption>)}</NativeSelect></label>}
-            <div className="price-row"><strong>{eur(variant.priceWithTax / 100)}</strong><span><Check /> Turime sandėlyje</span></div>
-            <Button size="lg" className="add-cart" onClick={() => addItem({ id: variant.id, productId: product.id, slug: product.slug, name: product.name, sku: variant.sku, price: variant.priceWithTax / 100, image: product.image })}><ShoppingBag /> Įdėti į krepšelį</Button>
+            <div className="price-row"><strong>{variant ? eur(variant.priceWithTax / 100) : "Kaina teiraujantis"}</strong><span><Check /> {variant ? "Turime sandėlyje" : "Parinksime tinkamą komplektaciją"}</span></div>
+            <Button size="lg" className="add-cart" disabled={!variant} onClick={() => variant && addItem({ id: variant.id, productId: product.id, slug: product.slug, name: product.name, sku: variant.sku, price: variant.priceWithTax / 100, image: product.image })}><ShoppingBag /> {variant ? "Įdėti į krepšelį" : "Užsakymas pagal užklausą"}</Button>
             <Button asChild size="lg" variant="outline" className="mt-3 w-full rounded-full"><Link href={`/kontaktai?produktas=${product.slug}`}>Gauti pasiūlymą su montavimu</Link></Button>
             <div className="purchase-benefits"><div><Truck /><span><strong>Pristatymas visoje Lietuvoje</strong><small>Terminas patvirtinamas užsakyme</small></span></div><div><PackageCheck /><span><strong>Garantinis aptarnavimas</strong><small>Specializuotas EV Projects servisas</small></span></div></div>
           </div>
         </div>
         <div className="product-information">
           <section><p className="eyebrow dark"><span /> APRAŠYMAS</p><h2>Apie produktą</h2><p>{product.summary}</p>{product.description.length > product.summary.length && <p>{product.description.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").slice(380, 1400)}</p>}</section>
-          <aside><h3>Techniniai duomenys</h3><dl><div><dt>SKU</dt><dd>{variant.sku}</dd></div>{specs.map((item) => <div key={item.id}><dt>{item.facet.name}</dt><dd>{item.name}</dd></div>)}<div><dt>Prieinamumas</dt><dd>Sandėlyje</dd></div></dl></aside>
+          <aside><h3>Techniniai duomenys</h3><dl><div><dt>SKU</dt><dd>{variant?.sku || "Pagal pasiūlymą"}</dd></div>{specs.map((item) => <div key={item.id}><dt>{item.facet.name}</dt><dd>{item.name}</dd></div>)}<div><dt>Prieinamumas</dt><dd>{variant ? "Sandėlyje" : "Teirautis"}</dd></div></dl></aside>
         </div>
         <section className="related"><div className="section-heading"><div><p className="eyebrow dark"><span /> DERINKITE KARTU</p><h2>Susijusios prekės</h2></div></div><div className="product-grid compact">{productData.products.filter((item) => item.id !== product.id && productCategories(item).some((c) => productCategories(product).includes(c))).slice(0, 4).map((item) => <ProductCard key={item.id} product={item} />)}</div></section>
       </div>
