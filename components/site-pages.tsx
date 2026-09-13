@@ -78,6 +78,113 @@ const branchContent = {
   },
 } as const;
 
+const solarInstallationGroups = [
+  {
+    number: "01",
+    title: "Saulės elektrinių konsultacijos",
+    intro: "Sprendimą pradedame nuo realaus poreikio ir objekto techninių galimybių.",
+    icon: CircleGauge,
+    items: [
+      "Jūsų reikalavimų ir objekto įvertinimas",
+      "Preliminarios saulės elektrinės kainos apskaičiavimas",
+      "PREMIUM ir ECONOMY pasiūlymų parengimas",
+      "Energijos vartojimo optimizavimas",
+      "Konsultacija dėl valstybės paramos saulės elektrinėms",
+    ],
+  },
+  {
+    number: "02",
+    title: "Saulės elektrinių montavimas",
+    intro: "Įrangą, konstrukcijas ir elektros dalį įrengiame kaip vieną saugią sistemą.",
+    icon: PanelsTopLeft,
+    items: [
+      "Tinkamos įrangos parinkimas pagal PREMIUM arba ECONOMY komplektaciją",
+      "Laikančiųjų konstrukcijų tvirtinimas prie stogo",
+      "Saulės modulių montavimas",
+      "DC/AC keitiklio (inverterio) montavimas",
+      "AC/DC viršįtampių apsaugos įrengimas",
+      "Saulės elektrinės prijungimas prie elektros tinklų",
+      "Garantinis ir pogarantinis saulės elektrinių aptarnavimas",
+    ],
+  },
+  {
+    number: "03",
+    title: "Dokumentų parengimas",
+    intro: "Pasirūpiname dokumentais, kurių reikia elektrinės prijungimui ir paramai.",
+    icon: FileCheck2,
+    items: [
+      "Saulės elektrinės dokumentai ESO tinklams",
+      "Elektros įrenginių ir įžeminimo varžų matavimai",
+      "Dokumentai valstybės paramai gauti (APVA parama)",
+    ],
+  },
+] as const;
+
+const solarEquipment = [
+  {
+    label: "PREMIUM-1",
+    title: "DAH Solar Full Screen + SolaX",
+    text: "440 W berėmiai Full Screen moduliai su SolaX 10 kW G2 inverteriu. Modulio konstrukcija padeda vandeniui ir nešvarumams lengviau nutekėti.",
+    image: "/assets/legacy/saules-tinklas/31-2.webp",
+    facts: ["DAH Solar 440 W", "SolaX 10 kW G2", "Individuali komplektacija"],
+  },
+  {
+    label: "PREMIUM-2",
+    title: "BlueSun + Sofar Solar",
+    text: "Visiškai juodi BlueSun 440 W moduliai ir kompaktiškas 8,8–11 kW Sofar Solar inverteris estetiškai namo saulės elektrinei.",
+    image: "/assets/legacy/saules-tinklas/project-panels.jpg",
+    facts: ["BlueSun 440 W", "Sofar Solar 8,8–11 kW", "Pilnai juodi moduliai"],
+  },
+  {
+    label: "DIY SPRENDIMAS",
+    title: "SolarUnit 800–1500 W",
+    text: "Kompaktiška mini saulės elektrinė balkonui, pavėsinei, tvorai ar kitai tinkamai konstrukcijai. Komplektacija tikslinama pagal objektą.",
+    image: "/assets/legacy/saules-tinklas/402-0.webp",
+    facts: ["800–1500 W", "Kompaktiškas sprendimas", "Balkonui ar pavėsinei"],
+  },
+  {
+    label: "SAULĖS STOGINĖ",
+    title: "Carport 5,46 arba 8,19 kW",
+    text: "Stoginė vienam arba dviem automobiliams, kuri vienoje vietoje sujungia elektros gamybą, automobilio apsaugą ir galimybę įkrauti elektromobilį.",
+    image: "/assets/legacy/saules-tinklas/31-0.jpg",
+    facts: ["5,46 arba 8,19 kW", "1–2 automobiliams", "Galima integruoti įkrovimą"],
+  },
+] as const;
+
+function SolarInstallationServices() {
+  return (
+    <section className="solar-installation-services">
+      <div className="site-shell py-20 lg:py-28">
+        <div className="solar-services-heading">
+          <div><p className="eyebrow dark"><span /> VISAS DARBŲ CIKLAS</p><h2>Saulės elektrinių montavimo paslaugos</h2></div>
+          <p>Nuo pirmojo objekto įvertinimo iki prijungimo prie tinklo, dokumentų ir ilgalaikio aptarnavimo.</p>
+        </div>
+        <div className="solar-services-grid">
+          {solarInstallationGroups.map((group) => {
+            const ServiceIcon = group.icon;
+            return <article key={group.title} className="solar-service-detail"><div className="solar-service-top"><span>{group.number}</span><ServiceIcon /></div><h3>{group.title}</h3><p>{group.intro}</p><ul>{group.items.map((item) => <li key={item}><Check /> <span>{item}</span></li>)}</ul></article>;
+          })}
+        </div>
+        <div className="solar-services-cta"><div><strong>Reikia preliminaraus skaičiavimo?</strong><span>Pateikite metinį suvartojimą, stogo tipą ir objekto vietą.</span></div><Button asChild size="lg"><a href="#uzklausa">Gauti pasiūlymą <ArrowRight /></a></Button></div>
+      </div>
+    </section>
+  );
+}
+
+function SolarEquipment() {
+  return (
+    <section className="solar-equipment-section">
+      <div className="site-shell py-20 lg:py-28">
+        <div className="section-heading"><div><p className="eyebrow dark"><span /> ĮRANGA IR KOMPLEKTACIJOS</p><h2>Montuojama saulės elektrinių įranga</h2></div><p>Komplektaciją galutinai parenkame pagal elektros vartojimą, stogą, ESO sąlygas ir kliento biudžetą.</p></div>
+        <div className="solar-equipment-grid">
+          {solarEquipment.map((item) => <article className="solar-equipment-card" key={item.title}><div className="solar-equipment-image"><img src={item.image} alt={item.title} /><span>{item.label}</span></div><div className="solar-equipment-copy"><h3>{item.title}</h3><p>{item.text}</p><ul>{item.facts.map((fact) => <li key={fact}><Check /> {fact}</li>)}</ul><a href="#uzklausa">Gauti individualų pasiūlymą <ChevronRight /></a></div></article>)}
+        </div>
+        <p className="solar-equipment-note">Įrangos modeliai, techninės charakteristikos, garantija, kaina ir prieinamumas patvirtinami individualiame pasiūlyme.</p>
+      </div>
+    </section>
+  );
+}
+
 function relevantProducts(branch: Branch) {
   if (branch === "heat") {
     return ["Šilumos siurbliai", "Boileriai", "Baseinų šildymo sistemos", "Hidrauliniai blokai"]
@@ -107,6 +214,8 @@ export function BranchPage({ branch }: { branch: Branch }) {
         <div className="service-grid">{content.services.map(([title, text, ServiceIcon, href], index) => <Link key={title} href={href} className="service-card"><span>0{index + 1}</span><ServiceIcon /><h3>{title}</h3><p>{text}</p><b>Plačiau <ChevronRight /></b></Link>)}</div>
       </section>
 
+      {branch === "solar" && <SolarInstallationServices />}
+
       <section className="dark-split">
         <div className="site-shell grid items-center gap-14 py-20 lg:grid-cols-2 lg:py-28">
           <div className="split-image"><img src={branch === "ev" ? "/assets/legacy/electrocars/9-1.webp" : branch === "solar" ? "/assets/legacy/saules-tinklas/project-panels.jpg" : "/assets/legacy/sprsun/installation.webp"} alt="Įgyvendinamas EV Projects projektas" /><div><Icon /><span>{content.label}</span></div></div>
@@ -114,10 +223,10 @@ export function BranchPage({ branch }: { branch: Branch }) {
         </div>
       </section>
 
-      <section className="site-shell py-20 lg:py-28">
+      {branch === "solar" ? <SolarEquipment /> : <section className="site-shell py-20 lg:py-28">
         <div className="section-heading"><div><p className="eyebrow dark"><span /> ĮRANGA</p><h2>Patikrinti produktai</h2></div><Button asChild variant="outline" className="rounded-full"><Link href="/parduotuve">Visas katalogas <ArrowRight /></Link></Button></div>
         <div className="product-grid compact">{relevantProducts(branch).map((product) => <ProductCard key={product.id} product={product} />)}</div>
-      </section>
+      </section>}
 
       {branch === "solar" && <SolarKnowledge />}
 

@@ -654,8 +654,46 @@ a { color: inherit; text-decoration: none; }
 .solar-faq-full > .site-shell > div:first-child > p:last-child { color: #6a767f; line-height: 1.7; }
 .solar-faq-full .faq-list [data-slot="accordion-trigger"] { font-size: .98rem; }
 
+/* Detailed solar installation services and equipment */
+.solar-installation-services { border-block: 1px solid #dce4d8; background: linear-gradient(145deg, #f4f7ef 0%, #e9f1df 100%); }
+.solar-services-heading { display: grid; align-items: end; gap: 45px; margin-bottom: 42px; grid-template-columns: 1.25fr .75fr; }
+.solar-services-heading h2 { max-width: 780px; margin: 0; font-size: clamp(2.7rem, 5vw, 5.3rem); line-height: .96; letter-spacing: -.06em; }
+.solar-services-heading > p { margin: 0; color: #5e6d60; line-height: 1.75; }
+.solar-services-grid { display: grid; gap: 14px; grid-template-columns: repeat(3, 1fr); }
+.solar-service-detail { display: flex; min-height: 100%; padding: clamp(24px, 3vw, 34px); border: 1px solid #d4dfcc; border-radius: 20px 20px 20px 6px; background: rgb(255 255 255 / 82%); flex-direction: column; }
+.solar-service-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 28px; }
+.solar-service-top > span { color: #718067; font-size: .68rem; font-weight: 900; letter-spacing: .12em; }
+.solar-service-top svg { width: 44px; height: 44px; padding: 10px; border-radius: 50%; background: #b7f542; color: #15240e; }
+.solar-service-detail h3 { margin: 0; font-size: clamp(1.45rem, 2vw, 2rem); line-height: 1.08; letter-spacing: -.035em; }
+.solar-service-detail > p { margin: 13px 0 23px; color: #687568; font-size: .8rem; line-height: 1.65; }
+.solar-service-detail ul { display: grid; gap: 11px; padding: 20px 0 0; margin: auto 0 0; border-top: 1px solid #dce4d7; list-style: none; }
+.solar-service-detail li { display: flex; align-items: flex-start; gap: 9px; color: #3f4e42; font-size: .74rem; line-height: 1.48; }
+.solar-service-detail li svg { width: 16px; height: 16px; flex: 0 0 16px; margin-top: 2px; padding: 3px; border-radius: 50%; background: #ddf3b9; color: #4b7614; }
+.solar-services-cta { display: flex; align-items: center; justify-content: space-between; gap: 25px; margin-top: 18px; padding: 24px 28px; border-radius: 15px 15px 15px 5px; background: #0b1b2d; color: white; }
+.solar-services-cta > div { display: grid; gap: 5px; }
+.solar-services-cta strong { font-size: 1rem; }
+.solar-services-cta span { color: #aebbc4; font-size: .75rem; }
+.solar-services-cta a { border-radius: 99px; background: #b7f542; color: #0b1b2d; }
+.solar-equipment-section { background: white; }
+.solar-equipment-grid { display: grid; gap: 16px; grid-template-columns: repeat(2, 1fr); }
+.solar-equipment-card { display: grid; min-height: 350px; overflow: hidden; border: 1px solid #dce3de; border-radius: 20px 20px 20px 6px; background: #f7f9f6; grid-template-columns: .82fr 1.18fr; }
+.solar-equipment-image { position: relative; min-height: 350px; overflow: hidden; background: #e9eee8; }
+.solar-equipment-image img { width: 100%; height: 100%; object-fit: cover; }
+.solar-equipment-image span { position: absolute; top: 14px; left: 14px; padding: 7px 10px; border-radius: 99px; background: #b7f542; color: #172410; font-size: .58rem; font-weight: 900; letter-spacing: .1em; }
+.solar-equipment-copy { display: flex; padding: clamp(22px, 3vw, 32px); flex-direction: column; }
+.solar-equipment-copy h3 { margin: 0; font-size: clamp(1.35rem, 2vw, 2rem); line-height: 1.05; letter-spacing: -.035em; }
+.solar-equipment-copy > p { margin: 13px 0 18px; color: #65726a; font-size: .77rem; line-height: 1.65; }
+.solar-equipment-copy ul { display: grid; gap: 7px; padding: 0; margin: 0 0 20px; list-style: none; }
+.solar-equipment-copy li { display: flex; align-items: center; gap: 7px; color: #4a5850; font-size: .69rem; font-weight: 700; }
+.solar-equipment-copy li svg { width: 14px; color: #76a92b; }
+.solar-equipment-copy > a { display: flex; align-items: center; gap: 6px; margin-top: auto; font-size: .72rem; font-weight: 900; }
+.solar-equipment-copy > a svg { width: 15px; }
+.solar-equipment-note { margin: 22px 0 0; color: #77837c; font-size: .7rem; line-height: 1.6; }
+
 @media (max-width: 920px) {
-  .solar-calculator, .solar-illustration-grid, .video-layout { grid-template-columns: 1fr; }
+  .solar-calculator, .solar-illustration-grid, .video-layout, .solar-services-heading { grid-template-columns: 1fr; }
+  .solar-services-grid { grid-template-columns: 1fr; }
+  .solar-service-detail { min-height: 0; }
   .calculator-results { grid-template-columns: repeat(3, 1fr); }
   .calculator-results > div { min-height: 150px; padding: 65px 14px 18px; border-right: 1px solid rgb(255 255 255 / 12%); border-bottom: 0; }
   .calculator-results > div:last-child { border-right: 0; }
@@ -676,4 +714,10 @@ a { color: inherit; text-decoration: none; }
   .video-frame { min-height: auto; aspect-ratio: 16 / 9; }
   .energy-costs > div { padding: 19px; }
   .solar-faq-full > .site-shell { grid-template-columns: 1fr; }
+  .solar-services-heading { gap: 20px; }
+  .solar-services-heading h2 { font-size: clamp(2.5rem, 13vw, 4rem); }
+  .solar-services-cta { align-items: flex-start; flex-direction: column; }
+  .solar-equipment-grid { grid-template-columns: 1fr; }
+  .solar-equipment-card { grid-template-columns: 1fr; }
+  .solar-equipment-image { min-height: 270px; }
 }
