@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
+import { Menu, ShoppingBag, Store, UserRound, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useCart } from "@/components/cart-context";
@@ -47,11 +47,19 @@ export function SiteHeader() {
             {nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
           </nav>
           <div className="flex items-center gap-2">
-            <Link href="/parduotuve" className="icon-button hidden sm:grid" aria-label="Ieškoti parduotuvėje"><Search size={18} /></Link>
-            <Link href="/parduotuve/paskyra" className="icon-button hidden sm:grid" aria-label="Paskyra"><UserRound size={18} /></Link>
-            <Button asChild className="rounded-full bg-lime-400 px-4 text-slate-950 hover:bg-lime-300">
-              <Link href="/parduotuve"><ShoppingBag /> <span className="hidden sm:inline">Parduotuvė</span>{count > 0 && <b className="cart-count">{count}</b>}</Link>
+            <Link href="/parduotuve/paskyra" className="icon-button header-account-button hidden sm:grid" aria-label="Paskyra"><UserRound size={18} /></Link>
+            <Button asChild className="header-store-button rounded-full bg-lime-400 px-4 text-slate-950 hover:bg-lime-300">
+              <Link href="/parduotuve"><Store /> <span>Parduotuvė</span></Link>
             </Button>
+            <Link
+              href="/parduotuve/krepselis"
+              className={`header-cart-button ${count > 0 ? "has-items" : ""}`}
+              aria-label={`Krepšelis: ${count} ${count === 1 ? "prekė" : "prekių"}`}
+            >
+              <ShoppingBag />
+              <span>Krepšelis</span>
+              {count > 0 && <b>{count}</b>}
+            </Link>
             <Sheet>
               <SheetTrigger asChild>
                 <button className="icon-button mobile-menu-button" aria-label="Atverti meniu"><Menu /></button>
@@ -68,6 +76,10 @@ export function SiteHeader() {
                     </SheetClose>
                   ))}
                 </nav>
+                <div className="mobile-commerce-links">
+                  <SheetClose asChild><Link href="/parduotuve"><Store /> Parduotuvė</Link></SheetClose>
+                  <SheetClose asChild><Link href="/parduotuve/krepselis"><ShoppingBag /> Krepšelis {count > 0 && <b>{count}</b>}</Link></SheetClose>
+                </div>
                 <SheetClose className="absolute right-5 top-5" aria-label="Uždaryti meniu"><X /></SheetClose>
               </SheetContent>
             </Sheet>

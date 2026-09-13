@@ -5,7 +5,7 @@ import Link from "next/link";
 import { ArrowLeft, Check, ChevronRight, FileText, Minus, PackageCheck, Plus, Search, ShoppingBag, Trash2, Truck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { NativeSelect, NativeSelectOption } from "@/components/ui/native-select";
+import { NativeSelect, NativeSelectOptGroup, NativeSelectOption } from "@/components/ui/native-select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useCart } from "@/components/cart-context";
 import productData from "@/data/products.json";
@@ -25,19 +25,48 @@ function productCategories(product: Product) {
   return product.facets.filter((value) => value.facet.name === "Kategorija").map((value) => value.name);
 }
 
-const primaryCategories = [
-  "Visos prekės",
-  "Įkrovimo stotelės",
-  "Įkrovikliai nešiojami",
-  "Įkrovimo kabeliai",
-  "Įkrovimo adapteriai",
-  "Šilumos siurbliai",
-  "Boileriai",
-  "Baseinų šildymo sistemos",
-  "Hidrauliniai blokai",
-  "Elektros komponentai",
-  "Elektriniai paspirtukai",
-];
+const categoryGroups = [
+  {
+    label: "Elektromobilių įkrovimas",
+    items: [
+      "Įkrovimo stotelės",
+      "Privačiam naudojimui",
+      "Komerciniam naudojimui",
+      "Greito įkrovimo stotelės DC",
+      "Įkrovikliai nešiojami",
+      "Įkrovimo kabeliai",
+      "Įkrovimo adapteriai",
+      "Įkrovimo aksesuarai",
+      "Įkrovimo įranga",
+      "Tinklo adapteriai",
+    ],
+  },
+  {
+    label: "Šildymo įranga",
+    items: [
+      "Šilumos siurbliai",
+      "Clima Series R32",
+      "ClimaWise Pro Series R32",
+      "Greenergy Series R290",
+      "Greenergy Pro Series R290",
+      "Boileriai",
+      "Baseinų šildymo sistemos",
+      "Hidrauliniai blokai",
+      "Šilumos siurblių dalys",
+    ],
+  },
+  {
+    label: "Kita įranga",
+    items: [
+      "Elektros komponentai",
+      "Elektromobilių dalys",
+      "Diagnostinė įranga",
+      "Elektriniai paspirtukai",
+    ],
+  },
+] as const;
+
+const primaryCategories = ["Visos prekės", ...categoryGroups.flatMap((group) => group.items)];
 
 export function ProductCard({ product }: { product: Product }) {
   const variant = product.variants[0];
@@ -65,6 +94,15 @@ export function Storefront({ initialCategory }: { initialCategory?: string }) {
   const [visible, setVisible] = React.useState(12);
   const productCount = productData.products.length;
   const variantCount = productData.products.reduce((sum, product) => sum + product.variants.length, 0);
+  const categoryCounts = React.useMemo(() => Object.fromEntries(primaryCategories.map((item) => [
+    item,
+    item === "Visos prekės" ? productCount : productData.products.filter((product) => productCategories(product).includes(item)).length,
+  ])), [productCount]);
+
+  const selectCategory = (item: string) => {
+    setCategory(item);
+    setVisible(12);
+  };
 
   const products = React.useMemo(() => {
     const filtered = productData.products.filter((product) => {
@@ -86,15 +124,45 @@ export function Storefront({ initialCategory }: { initialCategory?: string }) {
           </div>
         </div>
       </section>
-      <section className="site-shell py-12 lg:py-16">
-        <div className="store-controls">
-          <div className="category-scroll" role="group" aria-label="Produktų kategorijos">
-            {primaryCategories.map((item) => <button key={item} className={category === item ? "active" : ""} onClick={() => { setCategory(item); setVisible(12); }}>{item}</button>)}
-          </div>
-          <div className="flex items-center gap-3"><span className="text-sm text-slate-500">{products.length} prekės</span><NativeSelect aria-label="Rūšiuoti" value={sort} onChange={(event) => setSort(event.target.value)}><NativeSelectOption value="recommended">Pagal pavadinimą</NativeSelectOption><NativeSelectOption value="price-asc">Kaina: nuo mažiausios</NativeSelectOption><NativeSelectOption value="price-desc">Kaina: nuo didžiausios</NativeSelectOption></NativeSelect></div>
+      <section className="site-shell store-catalog">
+        <div className="store-mobile-category">
+          <label htmlFor="mobile-product-category">Produktų kategorija</label>
+          <NativeSelect id="mobile-product-category" value={category} onChange={(event) => selectCategory(event.target.value)} aria-label="Pasirinkti produktų kategoriją">
+            <NativeSelectOption value="Visos prekės">Visos prekės ({categoryCounts["Visos prekės"]})</NativeSelectOption>
+            {categoryGroups.map((group) => (
+              <NativeSelectOptGroup key={group.label} label={group.label}>
+                {group.items.map((item) => <NativeSelectOption key={item} value={item}>{item} ({categoryCounts[item]})</NativeSelectOption>)}
+              </NativeSelectOptGroup>
+            ))}
+          </NativeSelect>
+          <small>Visos kategorijos pateiktos viename sąraše.</small>
         </div>
-        {products.length ? <div className="product-grid">{products.slice(0, visible).map((product) => <ProductCard key={product.id} product={product} />)}</div> : <div className="empty-state"><Search /><h2>Prekių neradome</h2><p>Pabandykite trumpesnį raktažodį arba pasirinkite kitą kategoriją.</p><Button variant="outline" onClick={() => { setQuery(""); setCategory("Visos prekės"); }}>Išvalyti paiešką</Button></div>}
-        {visible < products.length && <div className="mt-10 text-center"><Button variant="outline" size="lg" className="rounded-full" onClick={() => setVisible((value) => value + 12)}>Rodyti daugiau</Button></div>}
+        <div className="store-catalog-layout">
+          <aside className="store-category-sidebar" aria-label="Produktų kategorijos">
+            <div className="store-sidebar-title"><small>KATALOGAS</small><h2>Kategorijos</h2></div>
+            <button className={`store-all-category ${category === "Visos prekės" ? "active" : ""}`} onClick={() => selectCategory("Visos prekės")} aria-pressed={category === "Visos prekės"}>
+              <span>Visos prekės</span><b>{categoryCounts["Visos prekės"]}</b>
+            </button>
+            {categoryGroups.map((group) => (
+              <div className="store-category-group" key={group.label}>
+                <h3>{group.label}</h3>
+                {group.items.map((item) => (
+                  <button key={item} className={category === item ? "active" : ""} onClick={() => selectCategory(item)} aria-pressed={category === item}>
+                    <span>{item}</span><b>{categoryCounts[item]}</b>
+                  </button>
+                ))}
+              </div>
+            ))}
+          </aside>
+          <div className="store-results">
+            <div className="store-results-bar">
+              <div><small>Pasirinkta kategorija</small><strong>{category}</strong></div>
+              <div><span>{products.length} {products.length === 1 ? "prekė" : "prekės"}</span><NativeSelect aria-label="Rūšiuoti" value={sort} onChange={(event) => setSort(event.target.value)}><NativeSelectOption value="recommended">Pagal pavadinimą</NativeSelectOption><NativeSelectOption value="price-asc">Kaina: nuo mažiausios</NativeSelectOption><NativeSelectOption value="price-desc">Kaina: nuo didžiausios</NativeSelectOption></NativeSelect></div>
+            </div>
+            {products.length ? <div className="product-grid">{products.slice(0, visible).map((product) => <ProductCard key={product.id} product={product} />)}</div> : <div className="empty-state"><Search /><h2>Prekių neradome</h2><p>Pabandykite trumpesnį raktažodį arba pasirinkite kitą kategoriją.</p><Button variant="outline" onClick={() => { setQuery(""); selectCategory("Visos prekės"); }}>Išvalyti paiešką</Button></div>}
+            {visible < products.length && <div className="mt-10 text-center"><Button variant="outline" size="lg" className="rounded-full" onClick={() => setVisible((value) => value + 12)}>Rodyti daugiau</Button></div>}
+          </div>
+        </div>
       </section>
     </main>
   );
