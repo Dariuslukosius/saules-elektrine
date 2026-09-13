@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, Search, ShoppingBag, UserRound, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetClose, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -19,6 +20,12 @@ const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2304.
 
 export function SiteHeader() {
   const { count } = useCart();
+  const pathname = usePathname();
+  const brand = pathname.startsWith("/saules-energetika")
+    ? { src: "/assets/brand/saules-tinklas.png", alt: "Saulės Tinklas", href: "/saules-energetika", tone: "solar" }
+    : pathname.startsWith("/silumos-siurbliai")
+      ? { src: "/assets/brand/sprsun-baltic.webp", alt: "SPRSUN Baltic", href: "/silumos-siurbliai", tone: "heat" }
+      : { src: "/assets/brand/electrocars.png", alt: "Electrocars", href: pathname.startsWith("/elektromobiliai") ? "/elektromobiliai" : "/", tone: "ev" };
   return (
     <>
       <div className="utility-bar">
@@ -31,10 +38,10 @@ export function SiteHeader() {
           </div>
         </div>
       </div>
-      <header className="main-header">
+      <header className={`main-header header-${brand.tone}`}>
         <div className="site-shell flex h-[76px] items-center justify-between gap-6">
-          <Link href="/" className="brand" aria-label="Electrocars pradinis puslapis">
-            <img className="brand-logo" src="/assets/brand/electrocars.png" alt="Electrocars" />
+          <Link href={brand.href} className="brand" aria-label={`${brand.alt} pradinis puslapis`}>
+            <img className={`brand-logo brand-logo-${brand.tone}`} src={brand.src} alt={brand.alt} />
           </Link>
           <nav className="hidden items-center gap-6 xl:flex" aria-label="Pagrindinis meniu">
             {nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
@@ -51,7 +58,7 @@ export function SiteHeader() {
               </SheetTrigger>
               <SheetContent className="w-[min(92vw,420px)] border-l-0 bg-[#0b1b2d] text-white">
                 <SheetHeader className="border-b border-white/10 px-6 py-7">
-                  <SheetTitle className="flex items-center gap-3 text-white"><img className="brand-logo brand-logo-mobile" src="/assets/brand/electrocars.png" alt="Electrocars" /></SheetTitle>
+                  <SheetTitle className="flex items-center gap-3 text-white"><img className={`brand-logo brand-logo-mobile brand-logo-${brand.tone}`} src={brand.src} alt={brand.alt} /></SheetTitle>
                   <SheetDescription className="text-slate-400">Visi energijos sprendimai vienoje vietoje.</SheetDescription>
                 </SheetHeader>
                 <nav className="flex flex-col px-6 py-4 text-xl font-bold" aria-label="Mobilusis meniu">

@@ -7,6 +7,7 @@ import { AccountPage, CartPage, ProductCard, ProductDetail, Storefront } from "@
 import productData from "@/data/products.json";
 import legacy from "@/data/legacy-content.json";
 import { SolarKnowledge } from "@/components/solar-knowledge";
+import { BranchHero } from "@/components/branch-hero";
 
 type Branch = "ev" | "solar" | "heat";
 
@@ -15,8 +16,6 @@ const branchContent = {
     label: "ELECTROCARS",
     title: "Įkrovimo ir serviso sprendimai, kurie tiesiog veikia.",
     intro: "Padedame pasirinkti įrangą, pasirūpiname elektros dalimi, sumontuojame ir liekame šalia, kai prireikia techninės pagalbos.",
-    image: "/assets/legacy/electrocars/hero.webp",
-    logo: "/assets/brand/electrocars.png",
     accent: "ev",
     icon: BatteryCharging,
     cta: "Gauti stotelės pasiūlymą",
@@ -38,8 +37,6 @@ const branchContent = {
     label: "SAULĖS TINKLAS",
     title: "Saulės elektrinė, suprojektuota jūsų vartojimui.",
     intro: "Nuo realaus poreikio skaičiavimo iki modulių, inverterio, kaupiklio, dokumentų ir paleidimo. Be perteklinių pažadų ir neaiškių prielaidų.",
-    image: "/assets/legacy/saules-tinklas/hero.png",
-    logo: "/assets/brand/saules-tinklas.png",
     accent: "solar",
     icon: SunMedium,
     cta: "Gauti saulės elektrinės pasiūlymą",
@@ -61,8 +58,6 @@ const branchContent = {
     label: "SPRSUN BALTIC",
     title: "Efektyvus šildymas su oficialiu atstovu šalia.",
     intro: "Parenkame SPRSUN oras–vanduo šilumos siurblius pagal pastato nuostolius, šildymo sistemą ir karšto vandens poreikį. Montuojame ir atliekame garantinį servisą.",
-    image: "/assets/legacy/sprsun/hero.webp",
-    logo: "/assets/brand/sprsun-baltic.webp",
     accent: "heat",
     icon: Heater,
     cta: "Parinkti šilumos siurblį",
@@ -98,11 +93,10 @@ export function BranchPage({ branch }: { branch: Branch }) {
   const Icon = content.icon;
   return (
     <main className={`branch-page branch-${content.accent}`}>
-      <section className="branch-hero">
-        <img src={content.image} alt="" />
-        <div className="branch-veil" />
-        <div className="site-shell relative z-10 grid min-h-[590px] items-end gap-10 py-16 lg:grid-cols-[1.15fr_.55fr]">
-          <div><img className={`branch-logo branch-logo-${content.accent}`} src={content.logo} alt={`${content.label} logotipas`} /><p className="eyebrow"><span /> {content.label}</p><h1>{content.title}</h1><p>{content.intro}</p><Button asChild size="lg" className="mt-8 rounded-full bg-white px-7 text-slate-950 hover:bg-lime-300"><a href="#uzklausa">{content.cta} <ArrowRight /></a></Button></div>
+      <BranchHero branch={branch} />
+      <section className="branch-intro-strip">
+        <div className="site-shell branch-intro-grid">
+          <div><p className="eyebrow dark"><span /> {content.label}</p><h2>{content.title}</h2><p>{content.intro}</p></div>
           <div className="branch-facts">{content.facts.map(([value, label]) => <div key={label}><strong>{value}</strong><span>{label}</span></div>)}</div>
         </div>
       </section>
@@ -175,6 +169,9 @@ function PageIntro({ label, title, text }: { label: string; title: string; text:
 
 const storeCategoryBySlug: Record<string, string> = {
   "stoteles": "Įkrovimo stotelės",
+  "ikrovimo-kabeliai": "Įkrovimo kabeliai",
+  "ikrovikliai-nesiojami": "Įkrovikliai nešiojami",
+  "ikrovimo-adapteriai": "Įkrovimo adapteriai",
   "silumos-siurbliai": "Šilumos siurbliai",
   "boileriai": "Boileriai",
   "baseinu-sildymo-sistemos": "Baseinų šildymo sistemos",
