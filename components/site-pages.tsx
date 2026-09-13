@@ -8,6 +8,7 @@ import productData from "@/data/products.json";
 import legacy from "@/data/legacy-content.json";
 import { SolarKnowledge } from "@/components/solar-knowledge";
 import { BranchHero } from "@/components/branch-hero";
+import { QuoteBuilder } from "@/components/quote-builder";
 
 type Branch = "ev" | "solar" | "heat";
 
@@ -200,6 +201,7 @@ export function SiteRouter({ segments, storeCategory }: { segments: string[]; st
   if (first === "parduotuve") {
     if (second === "produktas" && third) return <ProductDetail slug={third} />;
     if (second === "krepselis") return <CartPage />;
+    if (second === "pasiulymas") return <QuoteBuilder />;
     if (second === "atsiskaitymas") return <CartPage checkout />;
     if (second === "paskyra") return <AccountPage />;
     return <Storefront initialCategory={storeCategoryBySlug[storeCategory || ""] || storeCategory} />;
