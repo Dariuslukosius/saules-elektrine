@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Award, BatteryCharging, Building2, Check, ChevronRight, CircleGauge, FileCheck2, Headphones, Heater, MapPin, PanelsTopLeft, Phone, ShieldCheck, SunMedium, Wrench, Zap } from "lucide-react";
+import { ArrowRight, Award, BatteryCharging, Building2, Check, ChevronRight, CircleGauge, ExternalLink, FileCheck2, FileText, Headphones, Heater, MapPin, PanelsTopLeft, Phone, ShieldCheck, SunMedium, Wrench, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { LeadForm } from "@/components/lead-form";
@@ -44,8 +44,8 @@ const branchContent = {
     form: "solar" as const,
     services: [
       ["Poreikio skaičiavimas", "Vertiname metinį vartojimą, stogo galimybes ir planuojamus naujus elektros vartotojus.", CircleGauge, "/saules-energetika/kiek-sutaupysiu"],
-      ["Projektas ir dokumentai", "Parengiame techninį sprendimą bei padedame sutvarkyti prijungimo dokumentus.", FileCheck2, "/saules-energetika/paslaugos"],
-      ["Įranga ir montavimas", "Moduliai, inverteriai, kaupikliai ir saugus montavimas ant skirtingų tipų stogų.", PanelsTopLeft, "/saules-energetika/iranga"],
+      ["Projektas ir dokumentai", "Parengiame techninį sprendimą bei padedame sutvarkyti prijungimo dokumentus.", FileCheck2, "/saules-energetika#paslaugos"],
+      ["Įranga ir montavimas", "Moduliai, inverteriai, kaupikliai ir saugus montavimas ant skirtingų tipų stogų.", PanelsTopLeft, "/saules-energetika#iranga"],
       ["Stebėsena ir priežiūra", "Paleidžiame sistemą, paaiškiname stebėseną ir pasirūpiname garantiniu aptarnavimu.", Headphones, "/kontaktai"],
     ],
     facts: [["A–Z", "projektas ir montavimas"], ["25+ m.", "modulių efektyvumo perspektyva"], ["Visa LT", "projektų geografija"]],
@@ -124,36 +124,48 @@ const solarEquipment = [
   {
     label: "PREMIUM-1",
     title: "DAH Solar Full Screen + SolaX",
-    text: "440 W berėmiai Full Screen moduliai su SolaX 10 kW G2 inverteriu. Modulio konstrukcija padeda vandeniui ir nešvarumams lengviau nutekėti.",
+    text: "DAH Solar Full Screen moduliai komplektuojami su patikimais SolaX inverteriais. Vanduo ir purvas neužsilieka modulio apačioje, todėl gerėja savaiminis apsivalymas ir elektros gamyba.",
     image: "/assets/legacy/saules-tinklas/31-2.webp",
-    facts: ["DAH Solar 440 W", "SolaX 10 kW G2", "Individuali komplektacija"],
+    facts: ["DAH Solar 425–440 W", "SolaX X3 4–10 kW", "25 metų modulio produkto garantija"],
+    documents: [
+      ["DAH Solar 425–440 W modulio PDF", "https://www.saulestinklas.lt/wp-content/uploads/2024/07/Specifikacija-25-metu-DHN-54X16-FSBB-425-440W.pdf"],
+      ["SolaX X3 4–10 kW inverterio PDF", "https://www.saulestinklas.lt/wp-content/uploads/2020/08/X3-Mic-4-10kW-Data-Sheet-V3.pdf"],
+    ],
   },
   {
     label: "PREMIUM-2",
     title: "BlueSun + Sofar Solar",
-    text: "Visiškai juodi BlueSun 440 W moduliai ir kompaktiškas 8,8–11 kW Sofar Solar inverteris estetiškai namo saulės elektrinei.",
+    text: "Pagal Shingled PERC technologiją pagaminti visiškai juodi BlueSun moduliai derinami su kompaktiškais Sofar Solar inverteriais. Komplektacija skirta vertinantiems estetiką ir ilgalaikę gamybą.",
     image: "/assets/legacy/saules-tinklas/project-panels.jpg",
-    facts: ["BlueSun 440 W", "Sofar Solar 8,8–11 kW", "Pilnai juodi moduliai"],
+    facts: ["BlueSun 420–440 W", "Sofar Solar 3,3–12 kW", "30 metų linijinė efektyvumo garantija"],
+    documents: [
+      ["BlueSun 420–440 W modulio PDF", "https://www.saulestinklas.lt/wp-content/uploads/2023/09/2022-12-QUAD-BLACK-440-Shingled-datasheet-1.pdf"],
+      ["Sofar Solar 3,3–12 kW inverterio PDF", "https://www.saulestinklas.lt/wp-content/uploads/2023/09/SOFARSOLAR-33-12KTLX-G3-Product-datasheet-en-2.pdf"],
+    ],
   },
   {
     label: "DIY SPRENDIMAS",
     title: "SolarUnit 800–1500 W",
-    text: "Kompaktiška mini saulės elektrinė balkonui, pavėsinei, tvorai ar kitai tinkamai konstrukcijai. Komplektacija tikslinama pagal objektą.",
+    text: "Mini saulės elektrinė balkonui, stulpui, tvorai, pavėsinei ar kitai tinkamai konstrukcijai. Gaminama energija gali būti tiesiogiai naudojama buityje arba elektromobiliui įkrauti.",
     image: "/assets/legacy/saules-tinklas/402-0.webp",
-    facts: ["800–1500 W", "Kompaktiškas sprendimas", "Balkonui ar pavėsinei"],
+    facts: ["800–1500 W", "Integruotas mikroinverteris", "Nuotolinė stebėsena"],
+    documents: [
+      ["DAH SolarUnit techninis PDF", "https://www.saulestinklas.lt/wp-content/uploads/2023/09/Specifikacija-DAH-SU920D-Solar-unit-1.pdf"],
+    ],
   },
   {
     label: "SAULĖS STOGINĖ",
     title: "Carport 5,46 arba 8,19 kW",
-    text: "Stoginė vienam arba dviem automobiliams, kuri vienoje vietoje sujungia elektros gamybą, automobilio apsaugą ir galimybę įkrauti elektromobilį.",
+    text: "Elegantiška stoginė vienam arba dviem automobiliams. Vienoje vietoje gaminama elektros energija, automobilis apsaugomas nuo kritulių ir gali būti įkraunamas elektromobilis.",
     image: "/assets/legacy/saules-tinklas/31-0.jpg",
     facts: ["5,46 arba 8,19 kW", "1–2 automobiliams", "Galima integruoti įkrovimą"],
+    documents: [],
   },
 ] as const;
 
 function SolarInstallationServices() {
   return (
-    <section className="solar-installation-services">
+    <section className="solar-installation-services" id="paslaugos">
       <div className="site-shell py-20 lg:py-28">
         <div className="solar-services-heading">
           <div><p className="eyebrow dark"><span /> VISAS DARBŲ CIKLAS</p><h2>Saulės elektrinių montavimo paslaugos</h2></div>
@@ -173,13 +185,13 @@ function SolarInstallationServices() {
 
 function SolarEquipment() {
   return (
-    <section className="solar-equipment-section">
+    <section className="solar-equipment-section" id="iranga">
       <div className="site-shell py-20 lg:py-28">
-        <div className="section-heading"><div><p className="eyebrow dark"><span /> ĮRANGA IR KOMPLEKTACIJOS</p><h2>Montuojama saulės elektrinių įranga</h2></div><p>Komplektaciją galutinai parenkame pagal elektros vartojimą, stogą, ESO sąlygas ir kliento biudžetą.</p></div>
+        <div className="section-heading"><div><p className="eyebrow dark"><span /> ĮRANGA IR KOMPLEKTACIJOS</p><h2>Montuojama saulės elektrinių įranga</h2></div><p>„Saulės Tinklo“ komandos siūloma įranga komplektuojama pagal jūsų reikalavimus, objekto galimybes, ESO sąlygas ir biudžetą.</p></div>
         <div className="solar-equipment-grid">
-          {solarEquipment.map((item) => <article className="solar-equipment-card" key={item.title}><div className="solar-equipment-image"><img src={item.image} alt={item.title} /><span>{item.label}</span></div><div className="solar-equipment-copy"><h3>{item.title}</h3><p>{item.text}</p><ul>{item.facts.map((fact) => <li key={fact}><Check /> {fact}</li>)}</ul><a href="#uzklausa">Gauti individualų pasiūlymą <ChevronRight /></a></div></article>)}
+          {solarEquipment.map((item) => <article className="solar-equipment-card" key={item.title}><div className="solar-equipment-image"><img src={item.image} alt={item.title} /><span>{item.label}</span></div><div className="solar-equipment-copy"><h3>{item.title}</h3><p>{item.text}</p><ul>{item.facts.map((fact) => <li key={fact}><Check /> {fact}</li>)}</ul>{item.documents.length > 0 && <div className="solar-equipment-documents"><strong><FileText /> Techniniai dokumentai</strong>{item.documents.map(([label, href]) => <a key={href} href={href} target="_blank" rel="noopener noreferrer">{label}<ExternalLink /></a>)}</div>}<a className="solar-equipment-quote" href="#uzklausa">Gauti individualų pasiūlymą <ChevronRight /></a></div></article>)}
         </div>
-        <p className="solar-equipment-note">Įrangos modeliai, techninės charakteristikos, garantija, kaina ir prieinamumas patvirtinami individualiame pasiūlyme.</p>
+        <p className="solar-equipment-note">PDF dokumentai atidaromi naujame lange. Galutiniai įrangos modeliai, techninės charakteristikos, garantijos, kaina ir prieinamumas patvirtinami individualiame pasiūlyme.</p>
       </div>
     </section>
   );
