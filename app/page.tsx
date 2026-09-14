@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Award,
@@ -49,9 +50,18 @@ const directions = [
 export default function Home() {
   return (
     <main>
-      <section className="hero-grid">
-        <div className="site-shell relative z-10 grid min-h-[610px] items-center gap-10 py-20 lg:grid-cols-[1.08fr_.92fr]">
-          <div className="max-w-3xl">
+      <section className="hero-grid home-hero">
+        <Image
+          className="home-hero-image"
+          src="/assets/heroes/home-energy-hero.webp"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          aria-hidden="true"
+        />
+        <div className="site-shell relative z-10 grid min-h-[650px] grid-cols-1 items-center gap-10 py-20 lg:grid-cols-[1.25fr_.75fr]">
+          <div className="min-w-0 max-w-3xl">
             <p className="eyebrow"><span /> ENERGIJA JŪSŲ JUDĖJIMUI IR NAMAMS</p>
             <h1>Vienas partneris.<br /><em>Trys energijos kryptys.</em></h1>
             <p className="hero-copy">
@@ -65,19 +75,7 @@ export default function Home() {
                 <Link href="/parduotuve">Rinktis prekes</Link>
               </Button>
             </div>
-          </div>
-          <div className="hero-panel">
-            <div className="hero-panel-top">
-              <span>VISA SISTEMA</span>
-              <span>LT / 2026</span>
-            </div>
-            <div className="energy-orbit" aria-hidden="true">
-              <span className="orbit-core"><Zap /></span>
-              <span className="orbit-dot dot-one" />
-              <span className="orbit-dot dot-two" />
-              <span className="orbit-dot dot-three" />
-            </div>
-            <div className="grid grid-cols-3 border-t border-white/15">
+            <div className="home-hero-facts" aria-label="EV Projects patirtis ir kompetencijos">
               <div><strong>15+</strong><span>metų patirties</span></div>
               <div><strong>3</strong><span>kompetencijų kryptys</span></div>
               <div><strong>1</strong><span>atsakinga komanda</span></div>
