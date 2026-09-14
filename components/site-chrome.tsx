@@ -44,7 +44,10 @@ export function SiteHeader() {
             <img className={`brand-logo brand-logo-${brand.tone}`} src={brand.src} alt={brand.alt} />
           </Link>
           <nav className="hidden items-center gap-6 xl:flex" aria-label="Pagrindinis meniu">
-            {nav.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}
+            {nav.map(([label, href]) => {
+              const isActive = pathname === href || pathname.startsWith(`${href}/`);
+              return <Link key={href} href={href} className={isActive ? "active" : undefined} aria-current={isActive ? "page" : undefined}>{label}</Link>;
+            })}
           </nav>
           <div className="flex items-center gap-2">
             <Link href="/parduotuve/paskyra" className="icon-button header-account-button hidden sm:grid" aria-label="Paskyra"><UserRound size={18} /></Link>
