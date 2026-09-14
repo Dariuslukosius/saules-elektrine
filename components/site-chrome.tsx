@@ -22,10 +22,10 @@ export function SiteHeader() {
   const { count } = useCart();
   const pathname = usePathname();
   const brand = pathname.startsWith("/saules-energetika")
-    ? { src: "/assets/brand/saules-tinklas.png", alt: "Saulės Tinklas", href: "/saules-energetika", tone: "solar" }
+    ? { src: "/assets/brand/saules-tinklas.png", alt: "Saulės Tinklas", tone: "solar" }
     : pathname.startsWith("/silumos-siurbliai")
-      ? { src: "/assets/brand/sprsun-baltic.webp", alt: "SPRSUN Baltic", href: "/silumos-siurbliai", tone: "heat" }
-      : { src: "/assets/brand/electrocars.png", alt: "Electrocars", href: pathname.startsWith("/elektromobiliai") ? "/elektromobiliai" : "/", tone: "ev" };
+      ? { src: "/assets/brand/sprsun-baltic.webp", alt: "SPRSUN Baltic", tone: "heat" }
+      : { src: "/assets/brand/electrocars.png", alt: "Electrocars", tone: "ev" };
   return (
     <>
       <div className="utility-bar">
@@ -40,7 +40,7 @@ export function SiteHeader() {
       </div>
       <header className={`main-header header-${brand.tone}`}>
         <div className="site-shell flex h-[76px] items-center justify-between gap-6">
-          <Link href={brand.href} className="brand" aria-label={`${brand.alt} pradinis puslapis`}>
+          <Link href="/" className="brand" aria-label={`${brand.alt} – grįžti į bendrą pradinį puslapį`}>
             <img className={`brand-logo brand-logo-${brand.tone}`} src={brand.src} alt={brand.alt} />
           </Link>
           <nav className="hidden items-center gap-6 xl:flex" aria-label="Pagrindinis meniu">
@@ -66,7 +66,11 @@ export function SiteHeader() {
               </SheetTrigger>
               <SheetContent className="w-[min(92vw,420px)] border-l-0 bg-[#0b1b2d] text-white">
                 <SheetHeader className="border-b border-white/10 px-6 py-7">
-                  <SheetTitle className="flex items-center gap-3 text-white"><img className={`brand-logo brand-logo-mobile brand-logo-${brand.tone}`} src={brand.src} alt={brand.alt} /></SheetTitle>
+                  <SheetTitle className="flex items-center gap-3 text-white">
+                    <SheetClose asChild>
+                      <Link href="/" aria-label={`${brand.alt} – grįžti į bendrą pradinį puslapį`}><img className={`brand-logo brand-logo-mobile brand-logo-${brand.tone}`} src={brand.src} alt={brand.alt} /></Link>
+                    </SheetClose>
+                  </SheetTitle>
                   <SheetDescription className="text-slate-400">Visi energijos sprendimai vienoje vietoje.</SheetDescription>
                 </SheetHeader>
                 <nav className="flex flex-col px-6 py-4 text-xl font-bold" aria-label="Mobilusis meniu">
